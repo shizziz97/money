@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 class orderController extends Controller
 {
-   protected $count = new Countorder;
+    private $orderCount = 0;
     /**
      * Display a listing of the resource.
      *
@@ -45,10 +45,21 @@ class orderController extends Controller
         $order = Order::find($id);
         $user = User::find($order->user_id);
         $user->sales += 1 ;
-        $count->orders_count += 1; 
+        if($this->orderCount == '0'){
+            $this->orderCount = new Countorder;
+        }
+        $this->orderCount->orders_count += 1; 
         $order->delete();
         alert()->success('you are Done','successfully');
+        return redirect()->route('order.index');
+    }   
+
+    public function acceptable()
+    {
+        $orders = Order::where('accept','1')->get();
+        return view('orders.acceptable',compact('orders'));
     }
+
     /**
      * Display the specified resource.
      *
@@ -57,7 +68,8 @@ class orderController extends Controller
      */
     public function show($id)
     {
-        
+        $order = Order::find($id);
+        return view('orders.show',compact('order'));
     }
 
     /**

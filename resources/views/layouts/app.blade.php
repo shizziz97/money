@@ -84,7 +84,9 @@
                                     <a class="dropdown-item" href="{{ route('order.index') }}">
                                         orders
                                             </a>
-
+                                            <a class="dropdown-item" href="{{ route('order.acceptable') }}">
+                                                acceptable orders
+                                                    </a>
                                 </li>
                             
                             
