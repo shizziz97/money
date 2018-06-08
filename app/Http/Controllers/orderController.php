@@ -8,7 +8,9 @@ use App\Item;
 use App\Image;
 use App\Size;
 use App\Photo;
+use App\Order;
 use App\Countorder;
+use App\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 
@@ -23,7 +25,7 @@ class orderController extends Controller
     public function index()
     {
         $orders = Order::all();
-        return view('order.index',comapct('items'));
+        return view('orders.index',compact('orders'));
     }
 
     /**

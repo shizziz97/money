@@ -9,6 +9,7 @@
                         <th> Parcode </th>
                         <th> How many</th>
                         <th> Picture</th>
+                        <th>Size</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -22,6 +23,7 @@
                         <td>
                             <img src="{{asset('storage/' . $order->photo)}}" width="40px" height="30px"/>
                         </td>
+                        <td>{{$order->size->name}}</td>
                         <td>
                             <form action="{{route('order.destroy',$order->id)}}" method="post">
                                 @csrf

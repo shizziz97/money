@@ -57,6 +57,7 @@ class HomeShoppingController extends Controller
         $order->photo =$request->photo;
         $order->size_id = $request->size;
         $order->user_id = $request->user_id; 
+        $order->many = $request->many;
         $order->save();
         alert()->success('we will talk to you to certain , please check your mobile phone','Successfully');
         return redirect()->route('home.index');

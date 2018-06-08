@@ -46,6 +46,14 @@
                 </select>
             </div>
             </div>
+
+            {{-- many --}}
+            <div class="form-group row">
+                <label for="many" class="col-md-4 col-form-label text-md-right">{{ __('Choose How Many')}}</label>
+                <div class="col-md-6">
+                    <input type="number" min="1" max="20" name="many">
+                </div>
+            </div>
    <div class="form-group">
     <button type="submit" class="btn btn-success"> Buy </button>
    </div>

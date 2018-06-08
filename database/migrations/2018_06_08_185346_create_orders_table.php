@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('item_id');
             $table->unsignedInteger('size_id'); 
             $table->string('photo');
-            $table->integer('many');
+            $table->integer('many')->default('1');
             $table->boolean('accept')->default('0');
             $table->timestamps();
         });
