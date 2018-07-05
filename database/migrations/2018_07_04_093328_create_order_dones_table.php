@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCountordersTable extends Migration
+class CreateOrderDonesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateCountordersTable extends Migration
      */
     public function up()
     {
-        Schema::create('countorders', function (Blueprint $table) {
+        Schema::create('order_dones', function (Blueprint $table) {
             $table->increments('id');
+            $table->bigInteger('money');
             $table->unsignedInteger('orders_count');            
             $table->timestamps();
         });
@@ -27,6 +28,6 @@ class CreateCountordersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('countorders');
+        Schema::dropIfExists('order_dones');
     }
 }

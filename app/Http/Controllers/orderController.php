@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 
 class orderController extends Controller
 {
-    private $orderCount = 0;
+    
     /**
      * Display a listing of the resource.
      *
@@ -44,13 +44,15 @@ class orderController extends Controller
 
     public function Done($id)
     {
+        static $orderCount = $order;
         $order = Order::find($id);
         $user = User::find($order->user_id);
         $user->sales += 1 ;
-        if($this->orderCount == '0'){
-            $this->orderCount = new Countorder;
+        if($orderCount == '0'){
+            $orderCount = new Countorder;
         }
-        $this->orderCount->orders_count += 1; 
+        $orderCount->orders_count += 1; 
+        $orderCount->save();
         $order->delete();
         alert()->success('you are Done','successfully');
         return redirect()->route('order.index');

@@ -15,6 +15,7 @@
                 </thead>
                 <tbody>
 @foreach($orders as $order)
+@if(!$order->accept)
                     <tr>
                         <td>
 <a href="{{route('order.show',$order->id)}}" class="btn-default">{{$order->item->parcode}}</a>
@@ -35,6 +36,7 @@
                             </form>
                         </td>
                     </tr>
+                    @endif
 @endforeach
                 </tbody>
             </table>

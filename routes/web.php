@@ -42,3 +42,6 @@ Route::get('/shop/order/Done/{id}','OrderController@Done' ,['middleware'=>['auth
 Route::get('/shop/order/accept/{id}','OrderController@accept' ,['middleware'=>['auth','admin']])->name('order.accept');
 Route::resource('/shop/order','OrderController',['middleware'=>['auth','admin']])->except('create','store','edit','update');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/shop',function(){
+    return view('shoppingHome');
+});

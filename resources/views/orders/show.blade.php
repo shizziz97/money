@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-4 justify-content-center">
             <div class="card" style="width:18rem">
-                <img class="card-img-top" src="{{$order->photo}}" alt="card-image-cap"/>
+                <img class="card-img-top" src="{{asset('storage/' . $order->photo)}}" alt="card-image-cap"/>
                 <div class="card-body">
                     <div class="card-title">{{$order->item->parcode}}</div>
                     <span class="text-danger">{{$order->item->price_after_sale}}$</span>
