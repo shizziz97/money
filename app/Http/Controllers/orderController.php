@@ -13,6 +13,7 @@ use App\Countorder;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use App\OrderDone;
 
 class orderController extends Controller
 {
@@ -44,24 +45,41 @@ class orderController extends Controller
 
     public function Done($id)
     {
-        static $orderCount = $order;
-        $order = Order::find($id);
+        $order = Order::find($id);        
+        $orderDone = OrderDone::find('1');
+        if(empty($orderDone)){
+            $orderDone = new OrderDone;
+            $orderDone->id = '1';
+            $orderDone->money = $order->item->price_after_sale;
+            $orderDone->orders_count =1;
+            $orderDone->save(); 
+        }
+        else{
+            $orderDone->money += $order->item->price_after_sale;
+            $orderDone->orders_count +=1;
+            $orderDone->save(); 
+        }
         $user = User::find($order->user_id);
         $user->sales += 1 ;
-        if($orderCount == '0'){
-            $orderCount = new Countorder;
-        }
-        $orderCount->orders_count += 1; 
-        $orderCount->save();
         $order->delete();
         alert()->success('you are Done','successfully');
-        return redirect()->route('order.index');
+        return back();
     }   
 
     public function acceptable()
     {
         $orders = Order::where('accept','1')->get();
-        return view('orders.acceptable',compact('orders'));
+        $orderDone = OrderDone::find('1');
+        return view('orders.acceptable',compact('orders','orderDone'));
+    }
+
+    //this function to reset the orders done  
+    public function reset(){
+        $order = OrderDone::find('1');
+        if($order){
+        $order->delete();
+    }
+        return back();
     }
 
     /**

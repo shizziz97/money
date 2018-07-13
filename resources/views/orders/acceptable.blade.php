@@ -2,6 +2,23 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <div class="col-md-4">
+            All Done orders :  <span style="color:red;font-weight:bolder">
+                 @if($orderDone) {{$orderDone->orders_count}} 
+                 @else 0
+                 @endif
+            </span><br/>
+          All money that you earn from this website : <span style="color:red;font-weight:bolder">
+                @if($orderDone) {{$orderDone->money}} 
+                @else 0
+                @endif
+           </span><br/>
+           @if($orderDone)
+        <form action="{{route('order.reset')}}">
+            <input type="submit" class="btn btn-danger btn-sm" value="Reset"/>
+        </form>
+        @endif
+        </div>
         <div class="table table-responsive">
             <table class="table table-hover">
                 <thead>

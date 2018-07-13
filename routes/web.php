@@ -39,6 +39,7 @@ Route::resource('/Shopping/home','HomeShoppingController')->except('create');
 //ordering (admin)
 Route::get('/shop/order/acceptable','OrderController@acceptable',['middleware'=>['auth','admin']])->name('order.acceptable');
 Route::get('/shop/order/Done/{id}','OrderController@Done' ,['middleware'=>['auth','admin']])->name('order.Done');
+Route::get('/shop/order/reset','OrderController@reset' ,['middleware'=>['auth','admin']])->name('order.reset');
 Route::get('/shop/order/accept/{id}','OrderController@accept' ,['middleware'=>['auth','admin']])->name('order.accept');
 Route::resource('/shop/order','OrderController',['middleware'=>['auth','admin']])->except('create','store','edit','update');
 Route::get('/home', 'HomeController@index')->name('home');
